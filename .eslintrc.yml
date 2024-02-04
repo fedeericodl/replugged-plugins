@@ -45,13 +45,17 @@ overrides:
       no-void: off
       consistent-return: off
 
-  - files: "**/src/**/*.{ts,tsx}"
+  - files:
+      - "**/common/**/*.{ts,tsx}"
+      - "**/plugins/**/*.{ts,tsx}"
     extends: eslint-config-dmitmel/rules/typescript/with-type-checking
 
   - files: "**/*.d.ts"
     rules:
       no-var: off
 
-  - files: "src/**/*.{ts,tsx}"
+  - files:
+      - "common/**/*.{ts,tsx}"
+      - "plugins/**/*.{ts,tsx}"
     parserOptions:
       project: tsconfig.json

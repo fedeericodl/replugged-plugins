@@ -1,11 +1,14 @@
-# Replugged plugin template
+# Replugged Plugins
 
-See the [plugin development guide](https://guide.replugged.dev/docs/plugins/getting-started) for
-more information on using this template.
+All the [Replugged](https://replugged.dev/) plugins I have made.
 
-# License
+## Plugins
 
-The [plugin template](https://github.com/replugged-org/plugin-template) is licensed under the
-[MIT](https://opensource.org/license/mit/) license. However, addons using this template are not
-necessarily licensed under MIT. Developers are encouraged to add a license file to their repository,
-but if none exists, the repository should be considered as unlicensed.
+- [EditMessageAttachments](https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/EditMessageAttachments):
+  Add or delete attachments when editing a message.
+- [JumpToFirstMessage](https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/JumpToFirstMessage):
+  Adds a button to jump to the first message of a channel.
+- [ReadAllButton](https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/ReadAllButton):
+  Adds a button to mark as read everything.
+- [ShowDevBanner](https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/ShowDevBanner):
+  Shows Discord's staging dev banner.

@@ -1,0 +1,20 @@
+{
+  "id": "dev.fedeilleone.ReadAllButton",
+  "name": "ReadAllButton",
+  "description": "Adds a button to mark as read everything.",
+  "author": {
+    "name": "FedeIlLeone",
+    "discordID": "403195964241739776",
+    "github": "FedeIlLeone"
+  },
+  "version": "1.5.1",
+  "updater": {
+    "type": "store",
+    "id": "dev.fedeilleone.ReadAllButton"
+  },
+  "license": "MIT",
+  "image": "https://i.imgur.com/ZkUnFQP.gif",
+  "source": "https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/ReadAllButton",
+  "type": "replugged-plugin",
+  "renderer": "src/index.tsx"
+}

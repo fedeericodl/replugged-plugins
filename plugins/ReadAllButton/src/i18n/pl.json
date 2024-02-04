@@ -1,0 +1,20 @@
+{
+  "READALLBUTTON_CLEARED_EVERYTHING_TOAST": "Usunięte wszystko!",
+  "READALLBUTTON_CLEARED_TOAST": "Usunięte {type}!",
+  "READALLBUTTON_ERROR_GENERIC_TOAST": "Coś poszło nie tak!",
+  "READALLBUTTON_MARK_ALL_READ_DESCRIPTION": "W ten sposób oznaczysz wszystko jako przeczytane. Czy na pewno chcesz to zrobić?",
+  "READALLBUTTON_READ_ALL": "Przeczytaj wszystko",
+  "READALLBUTTON_READ_TYPE_DM": "Prywatne wiadomości",
+  "READALLBUTTON_READ_TYPE_GUILD_CHANNEL": "Kanały",
+  "READALLBUTTON_READ_TYPE_GUILD_EVENT": "Wydarzenia",
+  "READALLBUTTON_READ_TYPE_GUILD_ONBOARDING_QUESTION": "Pytania wprowadzające",
+  "READALLBUTTON_READ_TYPE_MUTED_GUILD": "Serwery wyciszone",
+  "READALLBUTTON_SETTINGS_ASK_CONFIRM_TITLE": "Poproś o potwierdzenie przed oznaczeniem jako przeczytane.",
+  "READALLBUTTON_SETTINGS_DISPLAY_TEXT_NOTE": "Wyłącz także tooltip.",
+  "READALLBUTTON_SETTINGS_DISPLAY_TEXT_TITLE": "Pokaż tekst zamiast ikony",
+  "READALLBUTTON_SETTINGS_EDIT_BLACKLIST": "Edytuj czarną listę",
+  "READALLBUTTON_SETTINGS_ROUND_BUTTON_TITLE": "Użyj okrągłego przycisku",
+  "READALLBUTTON_SETTINGS_SERVER_BLACKLIST_NOTE": "{count} serwerów nie zostanie oznaczonych jako przeczytane.",
+  "READALLBUTTON_SETTINGS_SERVER_BLACKLIST_TITLE": "Czarna lista serwerów",
+  "READALLBUTTON_SETTINGS_SHOW_TOAST_TITLE": "Pokaż toast potwierdzający"
+}

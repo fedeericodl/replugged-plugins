@@ -1,0 +1,19 @@
+{
+  "id": "dev.fedeilleone.ShowDevBanner",
+  "name": "ShowDevBanner",
+  "description": "Shows Discord's staging dev banner.",
+  "author": {
+    "name": "FedeIlLeone",
+    "discordID": "403195964241739776",
+    "github": "FedeIlLeone"
+  },
+  "version": "1.0.0",
+  "updater": {
+    "type": "github",
+    "id": "FedeIlLeone/replugged-plugins"
+  },
+  "license": "MIT",
+  "source": "https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/ShowDevBanner",
+  "type": "replugged-plugin",
+  "plaintextPatches": "src/plaintextPatches.ts"
+}

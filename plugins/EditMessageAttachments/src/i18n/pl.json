@@ -1,0 +1,4 @@
+{
+  "EDITMESSAGEATTACHMENTS_COUNT_ATTACHMENTS": "{count, plural, =1 {# załącznik} other {# załączniki}}",
+  "EDITMESSAGEATTACHMENTS_SETTINGS_CLEAR_ON_CANCEL_TITLE": "Wyczyść kolejkę przesyłania, gdy edycja zostanie anulowana"
+}

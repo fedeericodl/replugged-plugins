@@ -1,0 +1,4 @@
+{
+  "EDITMESSAGEATTACHMENTS_COUNT_ATTACHMENTS": "{count, plural, =1 {# allegato} other {# allegati}}",
+  "EDITMESSAGEATTACHMENTS_SETTINGS_CLEAR_ON_CANCEL_TITLE": "Cancella la coda di caricamento quando la modifica viene annullata"
+}

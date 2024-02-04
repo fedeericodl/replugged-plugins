@@ -1,6 +1,6 @@
+import type { DraftType } from "@common/stores/UploadAttachmentStore";
 import type { CloudUpload, RichValue } from "@common/types";
-import type { DraftType } from "@stores/UploadAttachmentStore";
-import type UploaderUtils from "@utils/UploaderUtils";
+import type UploaderUtils from "@common/utils/UploaderUtils";
 import type { Channel, Message } from "discord-types/general";
 import type React from "react";
 

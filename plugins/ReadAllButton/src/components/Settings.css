@@ -8,6 +8,10 @@
   padding: 8px 8px 8px 12px;
 }
 
+.readAllButton-listContainer:not(:last-child) {
+  margin-bottom: 4px;
+}
+
 .readAllButton-listCheckbox {
   flex: 0;
 }

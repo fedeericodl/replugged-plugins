@@ -1,5 +1,5 @@
 import type React from "react";
-import { common, components, util } from "replugged";
+import { common, components, util, webpack } from "replugged";
 import { cfg } from "../settings";
 import ServerBlacklistModal from "./ServerBlacklistModal";
 
@@ -16,6 +16,8 @@ enum ReadType {
   MUTED_GUILD,
 }
 
+const classes = await webpack.waitForProps<Record<"marginBottom20", string>>("marginBottom20");
+
 interface ReadListCheckboxProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type: ReadType;
@@ -27,7 +29,7 @@ function ReadListCheckbox(props: ReadListCheckboxProps): React.ReactElement {
   const { onChange, value } = setting;
   let header = "";
 
-  switch (props.type) {
+  switch (type) {
     case ReadType.DM:
       header = i18n.Messages.READALLBUTTON_READ_TYPE_DM;
       break;
@@ -79,7 +81,7 @@ export default (): React.ReactElement => {
         note={i18n.Messages.READALLBUTTON_SETTINGS_SERVER_BLACKLIST_NOTE.format({
           count: cfg.get("blacklist").length,
         })}
-        style={{ marginBottom: 20 }}
+        className={classes.marginBottom20}
         divider>
         <Button
           onClick={() =>
@@ -93,8 +95,8 @@ export default (): React.ReactElement => {
           {i18n.Messages.READALLBUTTON_SETTINGS_EDIT_BLACKLIST}
         </Button>
       </FormItem>
-      <FormItem title={i18n.Messages.MARK_AS_READ} style={{ marginBottom: 20 }} divider>
-        <Flex direction={Flex.Direction.VERTICAL} style={{ gap: 4 }}>
+      <FormItem title={i18n.Messages.MARK_AS_READ} className={classes.marginBottom20} divider>
+        <Flex direction={Flex.Direction.VERTICAL}>
           <ReadListCheckbox {...markMuted} type={ReadType.MUTED_GUILD} />
           <ReadListCheckbox {...markChannels} type={ReadType.GUILD_CHANNEL} />
           <ReadListCheckbox {...markDMs} type={ReadType.DM} />

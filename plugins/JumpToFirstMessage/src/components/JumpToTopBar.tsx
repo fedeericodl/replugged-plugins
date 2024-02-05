@@ -1,6 +1,7 @@
 import ChannelSummariesExperiment from "@common/experiments/ChannelSummariesExperiment";
 import ReadStateStore from "@common/stores/ReadStateStore";
 import classNames from "classnames";
+import type React from "react";
 import { common, components } from "replugged";
 import { cfg } from "../settings";
 import type { MessagesProps } from "../types";
@@ -80,7 +81,7 @@ function JumpToTopBar(props: JumpToTopBarProps): React.ReactElement | null {
 export default (props: JumpToTopBarProps): React.ReactElement => {
   return (
     <ErrorBoundary fallback={<></>}>
-      <JumpToTopBar {...props}></JumpToTopBar>
+      <JumpToTopBar {...props} />
     </ErrorBoundary>
   );
 };

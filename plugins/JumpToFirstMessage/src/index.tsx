@@ -1,3 +1,4 @@
+import type React from "react";
 import { i18n } from "replugged";
 import JumpToTopBar from "./components/JumpToTopBar";
 import Settings from "./components/Settings";

@@ -24,6 +24,21 @@ function EditComposerAttachments(props: EditComposerAttachmentsProps): React.Rea
 
   const channelId = channel.id;
 
+  const [shouldShow, setShouldShow] = React.useState(false);
+
+  React.useEffect(() => {
+    const showFn = (action: UploadAttachmentAddFilesPayload): void => {
+      if (action.draftType === DraftType.EditedChannelMessage) setShouldShow(true);
+    };
+
+    Dispatcher.subscribe<UploadAttachmentAddFilesPayload>("UPLOAD_ATTACHMENT_ADD_FILES", showFn);
+    return () =>
+      Dispatcher.unsubscribe<UploadAttachmentAddFilesPayload>(
+        "UPLOAD_ATTACHMENT_ADD_FILES",
+        showFn,
+      );
+  });
+
   const uploadsCount = Flux.useStateFromStores([UploadAttachmentStore], () =>
     UploadAttachmentStore.getUploadCount(channelId, DraftType.EditedChannelMessage),
   );
@@ -41,21 +56,6 @@ function EditComposerAttachments(props: EditComposerAttachmentsProps): React.Rea
         PermissionStore.can(constants.Permissions!.SEND_MESSAGES, channel)),
   );
   if (!canAttach) return null;
-
-  const [shouldShow, setShouldShow] = React.useState(false);
-
-  React.useEffect(() => {
-    const showFn = (action: UploadAttachmentAddFilesPayload): void => {
-      if (action.draftType === DraftType.EditedChannelMessage) setShouldShow(true);
-    };
-
-    Dispatcher.subscribe<UploadAttachmentAddFilesPayload>("UPLOAD_ATTACHMENT_ADD_FILES", showFn);
-    return () =>
-      Dispatcher.unsubscribe<UploadAttachmentAddFilesPayload>(
-        "UPLOAD_ATTACHMENT_ADD_FILES",
-        showFn,
-      );
-  });
 
   return (
     <Popout
@@ -84,7 +84,7 @@ function EditComposerAttachments(props: EditComposerAttachmentsProps): React.Rea
 export default (props: EditComposerAttachmentsProps): React.ReactElement => {
   return (
     <ErrorBoundary fallback={<></>}>
-      <EditComposerAttachments {...props}></EditComposerAttachments>
+      <EditComposerAttachments {...props} />
     </ErrorBoundary>
   );
 };

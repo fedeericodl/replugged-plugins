@@ -46,6 +46,7 @@ function ReadAllButton(): React.ReactElement {
     <div className={classes.listItem}>
       <ListItemTooltip text={i18n.Messages.READALLBUTTON_READ_ALL} shouldShow={!useText}>
         <Clickable
+          aria-label={i18n.Messages.READALLBUTTON_READ_ALL}
           className={classNames("readAllButton", { selected }, { round: useRoundButton })}
           onClick={handleClick}
           onMouseEnter={() => setSelected(true)}

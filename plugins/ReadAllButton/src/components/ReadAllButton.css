@@ -19,7 +19,7 @@
 
 .readAllButton.selected {
   color: var(--white-500);
-  background-color: var(--brand-experiment);
+  background-color: var(--brand-500);
 }
 
 .readAllButton.round {

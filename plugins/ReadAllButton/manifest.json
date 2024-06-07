@@ -7,7 +7,7 @@
     "discordID": "403195964241739776",
     "github": "FedeIlLeone"
   },
-  "version": "1.5.2",
+  "version": "1.5.3",
   "updater": {
     "type": "store",
     "id": "dev.fedeilleone.ReadAllButton"

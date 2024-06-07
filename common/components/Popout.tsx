@@ -56,6 +56,7 @@ interface BasePopoutProps {
   shouldShow?: boolean;
   spacing?: number;
   useMouseEnter?: boolean;
+  useRawTargetDimensions?: boolean;
 }
 
 interface BasePopoutState {

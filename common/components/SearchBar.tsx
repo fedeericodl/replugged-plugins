@@ -19,7 +19,16 @@ interface SearchBarProps extends Omit<React.ComponentPropsWithoutRef<"div">, "on
   size?: string;
 }
 
-export type SearchBarType = React.FC<React.PropsWithChildren<SearchBarProps>> & {
+export declare class SearchBar extends React.PureComponent<SearchBarProps> {
+  public inputRef: React.RefObject<HTMLInputElement>;
+  public containerRef: React.RefObject<HTMLDivElement>;
+  public handleOnChange: React.ChangeEventHandler<HTMLInputElement>;
+
+  public focus: () => void;
+  public blur: () => void;
+}
+
+export type SearchBarType = typeof SearchBar & {
   defaultProps: SearchBarProps;
   Sizes: Record<"SMALL" | "MEDIUM" | "LARGE", string>;
 };

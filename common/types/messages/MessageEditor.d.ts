@@ -38,6 +38,7 @@ export interface RichValue {
 }
 
 interface MessageEditorInnerProps {
+  channel: Channel;
   message: Message;
   onChange: (unknown: null, value: string, richValue: RichValue[]) => void;
   onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;

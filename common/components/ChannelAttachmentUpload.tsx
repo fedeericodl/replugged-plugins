@@ -8,9 +8,30 @@ export enum AttachmentListItemSizes {
   MEDIUM,
 }
 
+interface ClipMetadata {
+  applicationId?: string;
+  applicationName: string;
+  clipMethod: "auto" | "manual";
+  editMetadata?: {
+    applicationAudio: boolean;
+    end: number;
+    start: number;
+    voiceAudio: boolean;
+  };
+  filepath: string;
+  gameName?: string;
+  id: string;
+  length: number;
+  name?: string;
+  thumbnail: string;
+  users: string[];
+  version?: number;
+}
+
 interface ChannelAttachmentUploadProps {
   canEdit?: boolean;
   channelId: string;
+  clip?: ClipMetadata;
   draftType: DraftType;
   hideFileName?: boolean;
   keyboardModeEnabled?: boolean;

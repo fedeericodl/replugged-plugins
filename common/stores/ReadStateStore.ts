@@ -8,6 +8,7 @@ export enum ReadStateTypes {
   NOTIFICATION_CENTER,
   GUILD_HOME,
   GUILD_ONBOARDING_QUESTION,
+  MESSAGE_REQUESTS,
 }
 
 export enum UserNotificationSettings {
@@ -150,20 +151,20 @@ declare class ReadState {
   private _persisted: boolean;
   private _unreadCount: number;
 
-  public ackedWhileCached: boolean | undefined;
+  public ackedWhileCached?: boolean | undefined;
   public ackMessageIdAtChannelSelect: string | null;
   public ackPinTimestamp: number;
   public channelId: string;
   public estimated: boolean;
-  public flags: ReadStateFlags;
+  public flags?: ReadStateFlags;
   public isManualAck: boolean;
   public lastPinTimestamp: number;
-  public lastViewed: number | undefined;
+  public lastViewed?: number;
   public loadedMessages: boolean;
   public oldestUnreadMessageIdStale: boolean;
   public outgoingAck: string | null;
   public outgoingAckTimer: NodeJS.Timeout | null;
-  public snapshot: Snapshot | undefined;
+  public snapshot?: Snapshot;
   public type: ReadStateTypes;
 
   public get ackMessageId(): string | null;
@@ -242,7 +243,8 @@ export declare class ReadStateStore extends Flux.Store {
   public getGuildUnreadsSentinel: (guildId: string) => number;
   public getMentionChannelIds: () => string[];
   public getMentionCount: (channelId: string, readStateType?: ReadStateTypes) => number;
-  public getNotifCenterReadState: (channelId: string) => ReadState;
+  public getNonChannelAckId: (channelId: string) => string | null;
+  public getNotifCenterReadState: (channelId: string) => ReadState | undefined;
   public getOldestUnreadMessageId: (
     channelId: string,
     readStateType?: ReadStateTypes,

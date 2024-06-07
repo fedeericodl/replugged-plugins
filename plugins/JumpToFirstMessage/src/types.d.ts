@@ -51,6 +51,7 @@ export interface MessagesProps {
   filterAfterTimestamp: number | undefined;
   fontSize: number;
   hasUnreads: boolean;
+  hideSummaries?: boolean;
   keyboardModeEnabled: boolean;
   messageDisplayCompact: boolean;
   messageGroupSpacing: number;

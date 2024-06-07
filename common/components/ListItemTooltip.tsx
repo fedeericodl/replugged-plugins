@@ -12,6 +12,7 @@ interface ListItemTooltipProps {
   shouldShow?: boolean;
   text: string;
   tooltipClass?: string;
+  tooltipContentClass?: string;
 }
 
 export type ListItemTooltipType = React.FC<ListItemTooltipProps>;

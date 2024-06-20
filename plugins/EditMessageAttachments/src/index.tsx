@@ -1,7 +1,7 @@
 import UploadAttachmentActionCreators from "@common/actions/UploadAttachmentActionCreators";
 import EditMessageStore from "@common/stores/EditMessageStore";
 import UploadAttachmentStore, { DraftType } from "@common/stores/UploadAttachmentStore";
-import type { CloudUploader as CloudUploaderType, MessageEditorProps } from "@common/types";
+import type { MessageEditorProps } from "@common/types";
 import UploaderUtils from "@common/utils/UploaderUtils";
 import type React from "react";
 import { Injector, Logger, common, i18n, webpack } from "replugged";
@@ -10,8 +10,9 @@ import Settings from "./components/Settings";
 import translations from "./i18n";
 import { cfg } from "./settings";
 import type { ChannelTextAreaContainerType, ChatInputType, EditedMessageData } from "./types";
+import { uploadNewFiles } from "./utils/EditUploadUtils";
 
-const { constants, fluxDispatcher: Dispatcher, messages } = common;
+const { messages } = common;
 
 let stopped = false;
 
@@ -48,83 +49,13 @@ export function _clearUploads(channelId: string): void {
     UploadAttachmentActionCreators.clearAll(channelId, DraftType.EditedChannelMessage);
 }
 
-export async function _patchEditMessageAction(
+export function _patchEditMessageAction(
   data: EditedMessageData,
   originalFunction: (response: Record<string, unknown>) => void,
-): Promise<void> {
+): void {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!data) return;
-
-  const { channelId, messageId } = data;
-
-  const CloudUploader = await webpack.waitForModule<typeof CloudUploaderType>(
-    webpack.filters.bySource("_createMessage"),
-  );
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (!CloudUploader) {
-    logger.error("Failed to find CloudUploader");
-    return;
-  }
-
-  const url = (constants.Endpoints.MESSAGE as (channelId: string, messageId: string) => string)(
-    channelId,
-    messageId,
-  );
-  const cloudUploader = new CloudUploader(url, "PATCH");
-
-  const message = messages.getMessage(channelId, messageId);
-  const files = UploadAttachmentStore.getUploads(channelId, DraftType.EditedChannelMessage);
-
-  function runOriginalFunction(response: Record<string, unknown>): void {
-    const patchedResponse = { body: response };
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (originalFunction) originalFunction(patchedResponse);
-  }
-
-  cloudUploader.on("start", (file) => {
-    Dispatcher.dispatch({
-      type: "UPLOAD_START",
-      channelId,
-      file,
-      message,
-      uploader: cloudUploader,
-    });
-  });
-  cloudUploader.on("progress", (file) => {
-    Dispatcher.dispatch({
-      type: "UPLOAD_PROGRESS",
-      channelId,
-      file,
-    });
-  });
-  cloudUploader.on("error", (file, __, response) => {
-    Dispatcher.dispatch({
-      type: "UPLOAD_FAIL",
-      channelId,
-      file,
-      messageRecord: message,
-    });
-
-    runOriginalFunction(response);
-  });
-  cloudUploader.on("complete", (file, response) => {
-    Dispatcher.dispatch({
-      type: "UPLOAD_COMPLETE",
-      channelId,
-      file,
-      aborted: cloudUploader._aborted,
-    });
-
-    runOriginalFunction(response);
-  });
-
-  void cloudUploader.uploadFiles(
-    files,
-    { ...data, attachments: message?.attachments },
-    { addFilesTo: "attachments" },
-  );
-
-  UploadAttachmentActionCreators.clearAll(channelId, DraftType.EditedChannelMessage);
+  uploadNewFiles(data, originalFunction);
 }
 
 async function patchChannelTextAreaContainer(): Promise<void> {

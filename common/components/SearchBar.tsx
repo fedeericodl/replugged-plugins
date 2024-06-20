@@ -33,6 +33,8 @@ export type SearchBarType = typeof SearchBar & {
   Sizes: Record<"SMALL" | "MEDIUM" | "LARGE", string>;
 };
 
-export default await webpack.waitForModule<SearchBarType>(
-  webpack.filters.bySource(/inputProps:\w+,hideSearchIcon/),
-);
+const searchBarRgx = /inputProps:\w+,hideSearchIcon/;
+
+export default await webpack
+  .waitForModule(webpack.filters.bySource(searchBarRgx))
+  .then((mod) => webpack.getFunctionBySource<SearchBarType>(mod, searchBarRgx)!);

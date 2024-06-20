@@ -1,4 +1,4 @@
-import type { CloudUpload } from "@common/types";
+import type { UploaderBaseFile } from "@common/lib/uploader/UploaderBase";
 import type { Channel, Message } from "discord-types/general";
 import type { ChannelMessages } from "replugged/dist/renderer/modules/common/messages";
 
@@ -26,22 +26,6 @@ interface ChannelStream {
   unreadId?: string;
 }
 
-interface FileUpload {
-  attachmentsCount: number;
-  channelId: string;
-  compressionProgress: number;
-  currentSize: number;
-  draftContent: string;
-  hasImage: boolean;
-  hasVideo: boolean;
-  id: string;
-  items: CloudUpload[];
-  name: string;
-  progress: number;
-  rate: number;
-  totalPreCompressionSize: number;
-}
-
 export interface MessagesProps {
   canChat?: boolean;
   channel: Channel;
@@ -61,5 +45,5 @@ export interface MessagesProps {
   showingQuarantineBanner: boolean;
   showNewMessagesBar: boolean;
   unreadCount: number;
-  uploads: FileUpload[];
+  uploads: UploaderBaseFile[];
 }

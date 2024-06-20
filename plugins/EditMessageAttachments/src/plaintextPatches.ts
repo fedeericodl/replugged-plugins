@@ -38,7 +38,7 @@ export default [
     find: /\.A11Y_ANNOUNCEMENT_MESSAGE_EDITED_FAILED/,
     replacements: [
       {
-        match: /((\w)={channelId.+?};)(\w+\.default\.enqueue\(.+?(\w+=>(?:[^}]*?}){5}\)})\))/s,
+        match: /((\w)={channelId.+?};)(\w+\.\w+\.enqueue\(.+?(\w+=>(?:[^}]*?}){5}\)})\))/s,
         replace: (_, prefix1, variable, prefix2, ogFn) =>
           `${prefix1}${pluginExports}._checkHasUploads(${variable}?.channelId)?${pluginExports}._patchEditMessageAction(${variable},${ogFn}):${prefix2}`,
       },

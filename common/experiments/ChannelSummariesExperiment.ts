@@ -16,4 +16,16 @@ interface ChannelSummariesExperiment {
   ) => boolean;
 }
 
-export default await webpack.waitForProps<ChannelSummariesExperiment>("canSeeChannelSummaries");
+const mod = await webpack.waitForModule(
+  webpack.filters.bySource(/\.hasFeature\(\w+\.\w+\.SUMMARIES_ENABLED_GA\)/),
+);
+
+export default {
+  canGuildUseConversationSummaries: webpack.getFunctionBySource(mod, "SUMMARIES_ENABLED_BY_USER"),
+  canSeeChannelSummaries: webpack.getFunctionBySource(mod, "SUMMARIES_DISABLED"),
+  channelEligibleForSummaries: webpack.getFunctionBySource(mod, /return \w\(\w,!/),
+  useChannelSummariesExperiment: webpack.getFunctionBySource(
+    mod,
+    /arguments\[2];return \w+\(\w+,\w+\)/,
+  ),
+} as ChannelSummariesExperiment;

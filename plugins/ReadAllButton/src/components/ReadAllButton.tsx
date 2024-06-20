@@ -1,5 +1,5 @@
 import ListItemTooltip from "@common/components/ListItemTooltip";
-import DoubleCheckmark from "@common/components/icons/DoubleCheckmark";
+import DoubleCheckmarkLargeIcon from "@common/components/icons/DoubleCheckmarkLargeIcon";
 import classNames from "classnames";
 import { common, components, webpack } from "replugged";
 import { showClearedToast } from "..";
@@ -57,7 +57,7 @@ function ReadAllButton(): React.ReactElement {
               {i18n.Messages.READALLBUTTON_READ_ALL}
             </Text.Eyebrow>
           ) : (
-            <DoubleCheckmark width={24} height={24} />
+            <DoubleCheckmarkLargeIcon color="currentColor" />
           )}
         </Clickable>
       </ListItemTooltip>

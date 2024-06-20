@@ -19,4 +19,9 @@ interface UploaderUtils {
   showUploadFileSizeExceededError: (channel: Channel, files: FileList | null) => boolean;
 }
 
-export default await webpack.waitForProps<UploaderUtils>("showUploadFileSizeExceededError");
+const mod = await webpack.waitForModule(webpack.filters.bySource(/MAX_SIZE_ERROR,\w+mimetypes/));
+
+export default {
+  promptToUpload: webpack.getFunctionBySource(mod, "ATTACHMENT_TOO_MANY_ERROR_TITLE"),
+  showUploadFileSizeExceededError: webpack.getFunctionBySource(mod, "UPLOAD_AREA_TOO_LARGE_TITLE"),
+} as UploaderUtils;

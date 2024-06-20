@@ -1,4 +1,4 @@
-import type { CloudUpload } from "@common/types";
+import type { CloudUpload } from "@common/lib/uploader/CloudUpload";
 import { webpack } from "replugged";
 import type { flux as Flux } from "replugged/common";
 

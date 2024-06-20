@@ -1,12 +1,13 @@
 import type { Message } from "discord-types/general";
 import type EventEmitter from "events";
+import { webpack } from "replugged";
 import type { CloudUpload } from "./CloudUpload";
 
 export interface UploaderBaseOptions {
   raiseEndpointErrors?: boolean;
 }
 
-interface UploaderBaseFile {
+export interface UploaderBaseFile {
   attachmentsCount: number;
   channelId: string | undefined;
   compressionProgress: number;
@@ -86,3 +87,9 @@ export declare class UploaderBase extends EventEmitter {
     items: CloudUpload[],
   ) => void;
 }
+
+const uploaderBaseStr = "this.clearProcessingMessageInterval";
+
+export default await webpack
+  .waitForModule(webpack.filters.bySource(uploaderBaseStr))
+  .then((mod) => webpack.getFunctionBySource<typeof UploaderBase>(mod, uploaderBaseStr)!);

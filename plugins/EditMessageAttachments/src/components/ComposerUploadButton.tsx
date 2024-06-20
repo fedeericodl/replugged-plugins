@@ -1,5 +1,5 @@
 import FileInput, { type FileInput as FileInputType } from "@common/components/FileInput";
-import ImagePlaceholderWithPlusIcon from "@common/components/icons/ImagePlaceholderWithPlusIcon";
+import ImagePlusIcon from "@common/components/icons/ImagePlusIcon";
 import ChannelStore from "@common/stores/ChannelStore";
 import UploadAttachmentStore, { DraftType } from "@common/stores/UploadAttachmentStore";
 import UploaderUtils from "@common/utils/UploaderUtils";
@@ -76,11 +76,7 @@ export default (props: ComposerUploadButtonProps): React.ReactElement | null => 
         tabIndex={-1}
         aria-hidden
       />
-      <ImagePlaceholderWithPlusIcon
-        className="editMessageAttachments-uploadIcon"
-        width={28}
-        height={28}
-      />
+      <ImagePlusIcon className="editMessageAttachments-uploadIcon" width={28} height={28} />
     </Clickable>
   );
 };

@@ -1,3 +1,4 @@
+import { webpack } from "replugged";
 import type { CloudUpload } from "./CloudUpload";
 import type { UploaderBase, UploaderBaseOptions } from "./UploaderBase";
 
@@ -24,3 +25,9 @@ export declare class CloudUploaderBase extends UploaderBase {
   public failed: () => boolean;
   public setUploadingTextForUI: () => void;
 }
+
+const cloudUploaderBaseStr = "this._recomputeProgressTotal";
+
+export default await webpack
+  .waitForModule(webpack.filters.bySource(cloudUploaderBaseStr))
+  .then((mod) => webpack.getFunctionBySource<typeof CloudUploaderBase>(mod, cloudUploaderBaseStr)!);

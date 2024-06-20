@@ -1,5 +1,6 @@
+import type { CloudUpload } from "@common/lib/uploader/CloudUpload";
+import type { Item } from "@common/lib/uploader/Upload";
 import type { DraftType } from "@common/stores/UploadAttachmentStore";
-import type { CloudUpload, Item } from "@common/types";
 import { webpack } from "replugged";
 
 interface CommonAddOptions {

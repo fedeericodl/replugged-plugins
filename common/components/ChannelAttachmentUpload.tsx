@@ -1,5 +1,5 @@
+import type { CloudUpload } from "@common/lib/uploader/CloudUpload";
 import type { DraftType } from "@common/stores/UploadAttachmentStore";
-import type { CloudUpload } from "@common/types";
 import type React from "react";
 import { webpack } from "replugged";
 

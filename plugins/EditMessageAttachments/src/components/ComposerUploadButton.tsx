@@ -76,7 +76,12 @@ export default (props: ComposerUploadButtonProps): React.ReactElement | null => 
         tabIndex={-1}
         aria-hidden
       />
-      <ImagePlusIcon className="editMessageAttachments-uploadIcon" width={28} height={28} />
+      <ImagePlusIcon
+        className="editMessageAttachments-uploadIcon"
+        color="currentColor"
+        width={28}
+        height={28}
+      />
     </Clickable>
   );
 };

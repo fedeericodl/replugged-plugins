@@ -87,9 +87,10 @@ function patchStartEditMessageAction(): void {
 }
 
 async function patchEditChatInputType(stop?: boolean): Promise<void> {
-  const { ChatInputTypes } =
-    await webpack.waitForProps<Record<string, Record<string, ChatInputType>>>("ChatInputTypes");
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const mod = await webpack.waitForModule<Record<string, Record<string, ChatInputType>>>(
+    webpack.filters.bySource(`analyticsName:"edit"`),
+  );
+  const ChatInputTypes = Object.values(mod).find((v) => "EDIT" in v);
   if (!ChatInputTypes) {
     logger.error("Failed to find ChatInputTypes");
     return;

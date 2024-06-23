@@ -1,5 +1,6 @@
 import LazyScroller from "@common/components/LazyScroller";
 import SearchBar from "@common/components/SearchBar";
+import { fuzzysearch } from "@common/external";
 import SortedGuildStore from "@common/stores/SortedGuildStore";
 import type { Guild } from "discord-types/general";
 import { common, components } from "replugged";
@@ -23,26 +24,6 @@ interface ModalProps {
   onClose: () => Promise<void>;
 }
 
-function matchString(query: string, str: string): boolean {
-  query = query.toLowerCase();
-
-  const tokens = str.split("");
-  let queryPosition = 0;
-
-  tokens.forEach((char) => {
-    if (char.toLowerCase() === query[queryPosition]) {
-      queryPosition++;
-      if (queryPosition >= query.length) {
-        return false;
-      }
-    }
-  });
-
-  if (queryPosition !== query.length) return false;
-
-  return true;
-}
-
 function search(guilds: Guild[], query: string): Guild[] {
   if (query === "") return guilds;
 
@@ -58,7 +39,7 @@ function search(guilds: Guild[], query: string): Guild[] {
       return [guild];
     }
 
-    if (matchString(query, name)) {
+    if (fuzzysearch(query, name)) {
       matching.push(guild);
     }
   }

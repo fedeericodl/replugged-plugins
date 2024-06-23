@@ -1,5 +1,6 @@
 import ListItemTooltip from "@common/components/ListItemTooltip";
 import DoubleCheckmarkLargeIcon from "@common/components/icons/DoubleCheckmarkLargeIcon";
+import type { ListItems } from "@common/types";
 import classNames from "classnames";
 import { common, components, webpack } from "replugged";
 import { showClearedToast } from "..";
@@ -12,8 +13,7 @@ import "./ReadAllButton.css";
 const { contextMenu, i18n, React, modal, toast } = common;
 const { Clickable, ErrorBoundary, Text } = components;
 
-const classes =
-  await webpack.waitForProps<Record<"listItem" | "unavailableBadge", string>>("unavailableBadge");
+const ListItemsClasses = await webpack.waitForProps<Record<ListItems, string>>("unavailableBadge");
 
 function ReadAllButton(): React.ReactElement {
   const [selected, setSelected] = React.useState(false);
@@ -43,7 +43,7 @@ function ReadAllButton(): React.ReactElement {
   }, []);
 
   return (
-    <div className={classes.listItem}>
+    <div className={ListItemsClasses.listItem}>
       <ListItemTooltip text={i18n.Messages.READALLBUTTON_READ_ALL} shouldShow={!useText}>
         <Clickable
           aria-label={i18n.Messages.READALLBUTTON_READ_ALL}

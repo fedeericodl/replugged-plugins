@@ -1,3 +1,4 @@
+import type { AppView } from "@common/types";
 import type React from "react";
 import { Injector, common, i18n, util, webpack } from "replugged";
 import ReadAllButton from "./components/ReadAllButton";
@@ -14,10 +15,7 @@ const {
 
 export const inject = new Injector();
 
-const classes = await webpack.waitForProps<Record<"guilds" | "sidebar", string>>(
-  "guilds",
-  "sidebar",
-);
+const AppViewClasses = await webpack.waitForProps<Record<AppView, string>>("guilds", "sidebar");
 
 export function showClearedToast(readTypeString?: string): void {
   if (!cfg.get("toasts")) return;
@@ -45,7 +43,7 @@ async function patchGuildsNav(): Promise<void> {
   });
 
   util
-    .waitFor(`.${classes.guilds}`)
+    .waitFor(`.${AppViewClasses.guilds}`)
     .then(forceUpdate)
     .catch(() => {});
 }
@@ -79,5 +77,5 @@ export async function start(): Promise<void> {
 export function stop(): void {
   inject.uninjectAll();
 
-  forceUpdate(document.querySelector(`.${classes.guilds}`));
+  forceUpdate(document.querySelector(`.${AppViewClasses.guilds}`));
 }

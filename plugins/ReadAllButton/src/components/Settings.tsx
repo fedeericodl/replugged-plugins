@@ -1,3 +1,4 @@
+import type { Margins } from "@common/types";
 import type React from "react";
 import { common, components, util, webpack } from "replugged";
 import { cfg } from "../settings";
@@ -16,7 +17,7 @@ enum ReadType {
   MUTED_GUILD,
 }
 
-const classes = await webpack.waitForProps<Record<"marginBottom20", string>>("marginBottom20");
+const MarginsClasses = await webpack.waitForProps<Record<Margins, string>>("marginBottom20");
 
 interface ReadListCheckboxProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -81,7 +82,7 @@ export default (): React.ReactElement => {
         note={i18n.Messages.READALLBUTTON_SETTINGS_SERVER_BLACKLIST_NOTE.format({
           count: cfg.get("blacklist").length,
         })}
-        className={classes.marginBottom20}
+        className={MarginsClasses.marginBottom20}
         divider>
         <Button
           onClick={() =>
@@ -95,7 +96,10 @@ export default (): React.ReactElement => {
           {i18n.Messages.READALLBUTTON_SETTINGS_EDIT_BLACKLIST}
         </Button>
       </FormItem>
-      <FormItem title={i18n.Messages.MARK_AS_READ} className={classes.marginBottom20} divider>
+      <FormItem
+        title={i18n.Messages.MARK_AS_READ}
+        className={MarginsClasses.marginBottom20}
+        divider>
         <Flex direction={Flex.Direction.VERTICAL}>
           <ReadListCheckbox {...markMuted} type={ReadType.MUTED_GUILD} />
           <ReadListCheckbox {...markChannels} type={ReadType.GUILD_CHANNEL} />

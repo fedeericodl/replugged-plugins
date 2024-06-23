@@ -10,7 +10,7 @@ interface Color {
   resolve: (theme: { theme: string; saturation: number }) => ColorResponse;
 }
 
-export type GenericIconProps = React.ComponentPropsWithoutRef<"svg"> & {
+export type DefaultIconProps = React.ComponentPropsWithoutRef<"svg"> & {
   color?: string | Color;
   colorClass?: string;
   size?: "xxs" | "xs" | "sm" | "md" | "lg" | "custom";

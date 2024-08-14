@@ -31,8 +31,8 @@
     "eslint": "^8.57.0",
     "eslint-config-dmitmel": "github:dmitmel/eslint-config-dmitmel",
     "eslint-plugin-node": "^11.1.0",
-    "prettier": "^3.3.2",
-    "replugged": "^4.8.0",
+    "prettier": "^3.3.3",
+    "replugged": "^4.8.1",
     "typescript": "^5.4.5"
   }
 }

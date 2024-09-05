@@ -16,5 +16,6 @@
   "image": "https://i.imgur.com/ZkUnFQP.gif",
   "source": "https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/ReadAllButton",
   "type": "replugged-plugin",
-  "renderer": "src/index.tsx"
+  "renderer": "src/index.tsx",
+  "plaintextPatches": "src/plaintextPatches.ts"
 }

@@ -22,6 +22,12 @@ interface UploaderUtils {
 const mod = await webpack.waitForModule(webpack.filters.bySource(/MAX_SIZE_ERROR,\w+mimetypes/));
 
 export default {
-  promptToUpload: webpack.getFunctionBySource(mod, "ATTACHMENT_TOO_MANY_ERROR_TITLE"),
-  showUploadFileSizeExceededError: webpack.getFunctionBySource(mod, "UPLOAD_AREA_TOO_LARGE_TITLE"),
+  promptToUpload: webpack.getFunctionBySource(
+    mod,
+    "Unexpected mismatch between files and file metadata",
+  ),
+  showUploadFileSizeExceededError: webpack.getFunctionBySource(
+    mod,
+    ".UPLOAD_ATTACHMENT_MAX_SIZE_ERROR",
+  ),
 } as UploaderUtils;

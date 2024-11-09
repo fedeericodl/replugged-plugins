@@ -30,3 +30,15 @@
 .editMessageAttachments-uploadIcon:active {
   color: var(--interactive-active);
 }
+
+.editMessageAttachments-uploadInput-dragHover,
+.editMessageAttachments-uploadInput-dragHover svg {
+  color: rgb(var(--accentcolor_v));
+}
+
+.editMessageAttachments-uploadInput-dragHover div {
+  border-width: 1px;
+  border-style: dotted;
+  height: 100%;
+  border-radius: 10px;
+}

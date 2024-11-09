@@ -5,7 +5,7 @@ const pluginExports = `window.replugged.plugins.getExports("dev.fedeilleone.Edit
 export default [
   {
     // Patch the MessageEditor component
-    find: /\.EDIT_TEXTAREA_HELP/,
+    find: "this.onClickSave",
     replacements: [
       {
         // Render the EditComposerAttachments component
@@ -35,7 +35,7 @@ export default [
   },
   {
     // Upload files while editing
-    find: /\.A11Y_ANNOUNCEMENT_MESSAGE_EDITED_FAILED/,
+    find: 'type:"MESSAGE_EDIT_FAILED_AUTOMOD"',
     replacements: [
       {
         match: /((\w)={channelId.+?};)(\w+\.\w+\.enqueue\(.+?(\w+=>(?:[^}]*?}){5}\)})\))/s,
@@ -52,6 +52,24 @@ export default [
         match: /canPasteFiles:(\w+)/,
         replace: (_, variable) =>
           `canPasteFiles:${variable}||${pluginExports}._checkIsInEditor(arguments[0].channel.id)`,
+      },
+    ],
+  },
+  {
+    find: "showLargeMessageDialog:!1",
+    replacements: [
+      {
+        match: /onDrop:/,
+        replace: () => `channelId:arguments[0].channel.id,onDrop:`,
+      },
+    ],
+  },
+  {
+    find: "this.state.isOverZone",
+    replacements: [
+      {
+        match: /!this.preventUnwantedDrop/g,
+        replace: (suffix) => `${pluginExports}._checkIsInEditor(this.props.channelId) || ${suffix}`,
       },
     ],
   },

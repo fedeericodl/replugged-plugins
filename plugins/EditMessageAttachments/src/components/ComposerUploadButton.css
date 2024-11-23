@@ -11,6 +11,11 @@
   cursor: pointer;
 }
 
+.editMessageAttachments-uploadInput.dragging {
+  border: 2px dashed hsl(var(--white-500-hsl) / 0.4);
+  box-sizing: border-box;
+}
+
 .editMessageAttachments-uploadInput:hover .editMessageAttachments-uploadIcon {
   color: var(--interactive-hover);
 }
@@ -27,18 +32,7 @@
   color: var(--interactive-hover);
 }
 
-.editMessageAttachments-uploadIcon:active {
+.editMessageAttachments-uploadIcon:active,
+.editMessageAttachments-uploadInput.dragging .editMessageAttachments-uploadIcon {
   color: var(--interactive-active);
-}
-
-.editMessageAttachments-uploadInput-dragHover,
-.editMessageAttachments-uploadInput-dragHover svg {
-  color: rgb(var(--accentcolor_v));
-}
-
-.editMessageAttachments-uploadInput-dragHover div {
-  border-width: 1px;
-  border-style: dotted;
-  height: 100%;
-  border-radius: 10px;
 }

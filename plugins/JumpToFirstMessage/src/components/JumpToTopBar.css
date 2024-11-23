@@ -25,9 +25,6 @@
 .jumpToFirstMessage-container.containerMarginTop {
   top: 48px;
 }
-.jumpToFirstMessage-container.containerMarginTopExtra {
-  top: 88px;
-}
 
 .jumpToFirstMessage-navigator {
   display: flex;

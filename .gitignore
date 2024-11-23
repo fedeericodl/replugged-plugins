@@ -106,3 +106,5 @@ dist
 /bundle
 
 assets/*.json
+**/i18n/*.map
+*.mjs

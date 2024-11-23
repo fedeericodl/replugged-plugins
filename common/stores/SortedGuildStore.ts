@@ -34,7 +34,7 @@ type Node = FolderNode | GuildNode;
 
 interface TreeSnapshot {
   nodes: Record<string, Node>;
-  root: RootNode;
+  rootChildrenIds: number[];
 }
 
 export declare class GuildsTree {
@@ -82,7 +82,7 @@ interface Snapshot {
 export declare class SortedGuildStore extends Flux.SnapshotStore<Snapshot> {
   public getCompatibleGuildFolders: () => MappedFolder[] | MappedGuild[];
   public getFlattenedGuildIds: () => string[];
-  public getGuildFolderById: (folderId: number) => MappedFolder;
+  public getGuildFolderById: (id: number) => MappedFolder;
   public getGuildFolders: () => MappedFolder[] | MappedGuild[];
   public getGuildsTree: () => GuildsTree;
   public takeSnapshot: () => Snapshot;

@@ -5,6 +5,7 @@ import type { ChannelMessages } from "replugged/dist/renderer/modules/common/mes
 type ChannelStreamTypes =
   | "MESSAGE"
   | "MESSAGE_GROUP_BLOCKED"
+  | "MESSAGE_GROUP_IGNORED"
   | "MESSAGE_GROUP_SPAMMER"
   | "THREAD_STARTER_MESSAGE"
   | "DIVIDER"
@@ -36,6 +37,7 @@ export interface MessagesProps {
   fontSize: number;
   hasUnreads: boolean;
   hideSummaries?: boolean;
+  jumpBarClassName?: string;
   keyboardModeEnabled: boolean;
   messageDisplayCompact: boolean;
   messageGroupSpacing: number;

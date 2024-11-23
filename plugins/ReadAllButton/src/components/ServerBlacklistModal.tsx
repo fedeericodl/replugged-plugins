@@ -4,11 +4,16 @@ import { fuzzysearch } from "@common/external";
 import SortedGuildStore from "@common/stores/SortedGuildStore";
 import type { Guild } from "discord-types/general";
 import { common, components } from "replugged";
+import t from "../i18n/en-US.messages";
 import { cfg } from "../settings";
 
 import "./ServerBlacklistModal.css";
 
-const { guilds, i18n, React } = common;
+const {
+  guilds,
+  i18n: { intl, t: discordT },
+  React,
+} = common;
 const { Button, Checkbox, Flex, Modal, Text } = components;
 
 enum ModalTransitionState {
@@ -132,7 +137,7 @@ export default (props: ModalProps): React.ReactElement => {
     <Modal.ModalRoot transitionState={transitionState}>
       <Modal.ModalHeader direction={Flex.Direction.VERTICAL} separator={false}>
         <Text.H1 variant="heading-xl/semibold">
-          {i18n.Messages.READALLBUTTON_SETTINGS_SERVER_BLACKLIST_TITLE}
+          {intl.string(t.READALLBUTTON_SETTINGS_SERVER_BLACKLIST_TITLE)}
         </Text.H1>
       </Modal.ModalHeader>
       <Modal.ModalContent className="readAllButton-blacklistModalContent">
@@ -153,10 +158,10 @@ export default (props: ModalProps): React.ReactElement => {
       </Modal.ModalContent>
       <Modal.ModalFooter>
         <Button onClick={handleSubmit} type="submit">
-          {i18n.Messages.DONE}
+          {intl.string(discordT.DONE)}
         </Button>
         <Button onClick={onClose} look={Button.Looks.LINK} color={Button.Colors.PRIMARY}>
-          {i18n.Messages.CLOSE}
+          {intl.string(discordT.CLOSE)}
         </Button>
       </Modal.ModalFooter>
     </Modal.ModalRoot>

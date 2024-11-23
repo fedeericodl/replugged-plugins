@@ -7,7 +7,6 @@ import type React from "react";
 import { Injector, Logger, common, i18n, webpack } from "replugged";
 import EditComposerAttachments from "./components/EditComposerAttachments";
 import Settings from "./components/Settings";
-import translations from "./i18n";
 import { cfg } from "./settings";
 import type { ChannelTextAreaContainerType, ChatInputType, EditedMessageData } from "./types";
 import { uploadNewFiles } from "./utils/EditUploadUtils";
@@ -104,7 +103,7 @@ async function patchEditChatInputType(stop?: boolean): Promise<void> {
 export { Settings, cfg };
 
 export async function start(): Promise<void> {
-  i18n.loadAllStrings(translations);
+  void i18n.addRepluggedStrings();
 
   await patchChannelTextAreaContainer();
   patchStartEditMessageAction();

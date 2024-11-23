@@ -8,9 +8,13 @@ import { logger } from "..";
 import { MAX_UPLOAD_COUNT } from "../constants";
 
 import "./ComposerUploadButton.css";
-import type { DragEvent } from "react";
 
-const { flux: Flux, i18n, modal, React } = common;
+const {
+  flux: Flux,
+  i18n: { intl, t: discordT },
+  modal,
+  React,
+} = common;
 const { Clickable } = components;
 
 interface ComposerUploadButtonProps {
@@ -46,8 +50,8 @@ export default (props: ComposerUploadButtonProps): React.ReactElement | null => 
     const count = event?.dataTransfer?.files?.length ?? 0;
     if (attachmentsCount + count + uploadsCount > MAX_UPLOAD_COUNT) {
       modal.alert({
-        title: i18n.Messages.ATTACHMENT_TOO_MANY_ERROR_TITLE,
-        body: i18n.Messages.ATTACHMENT_TOO_MANY_ERROR_MESSAGE.format({
+        title: intl.string(discordT.ATTACHMENT_TOO_MANY_ERROR_TITLE),
+        body: intl.formatToPlainString(discordT.ATTACHMENT_TOO_MANY_ERROR_MESSAGE, {
           limit: MAX_UPLOAD_COUNT,
         }),
       });
@@ -98,8 +102,8 @@ export default (props: ComposerUploadButtonProps): React.ReactElement | null => 
             const count = event.currentTarget.files?.length ?? 0;
             if (attachmentsCount + count + uploadsCount > MAX_UPLOAD_COUNT) {
               modal.alert({
-                title: i18n.Messages.ATTACHMENT_TOO_MANY_ERROR_TITLE,
-                body: i18n.Messages.ATTACHMENT_TOO_MANY_ERROR_MESSAGE.format({
+                title: intl.string(discordT.ATTACHMENT_TOO_MANY_ERROR_TITLE),
+                body: intl.formatToPlainString(discordT.ATTACHMENT_TOO_MANY_ERROR_MESSAGE, {
                   limit: MAX_UPLOAD_COUNT,
                 }),
               });

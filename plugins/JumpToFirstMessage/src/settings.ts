@@ -2,14 +2,14 @@ import { settings } from "replugged";
 
 interface Settings {
   align: string;
-  forumsOnly: boolean;
   jumpToUnread: boolean;
+  threadsOnly: boolean;
 }
 
 const defaultSettings = {
   align: "right",
-  forumsOnly: true,
   jumpToUnread: false,
+  threadsOnly: true,
 } satisfies Partial<Settings>;
 
 export const cfg = await settings.init<Settings, keyof typeof defaultSettings>(

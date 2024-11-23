@@ -2,11 +2,11 @@ import type React from "react";
 import { common, i18n } from "replugged";
 import ReadAllButton from "./components/ReadAllButton";
 import Settings from "./components/Settings";
-import translations from "./i18n";
+import t from "./i18n/en-US.messages";
 import { cfg } from "./settings";
 
 const {
-  i18n: { Messages },
+  i18n: { intl },
   toast,
 } = common;
 
@@ -20,15 +20,15 @@ export function showClearedToast(readTypeString?: string): void {
   if (!cfg.get("toasts")) return;
 
   const message = readTypeString
-    ? Messages.READALLBUTTON_CLEARED_TOAST.format({ type: readTypeString })
-    : Messages.READALLBUTTON_CLEARED_EVERYTHING_TOAST;
+    ? intl.formatToPlainString(t.READALLBUTTON_CLEARED_TOAST, { type: readTypeString })
+    : intl.string(t.READALLBUTTON_CLEARED_EVERYTHING_TOAST);
   toast.toast(message, toast.Kind.SUCCESS);
 }
 
-export { Settings, cfg };
+export { cfg, Settings };
 
 export function start(): void {
-  i18n.loadAllStrings(translations);
+  void i18n.addRepluggedStrings();
 
   stopped = false;
 }

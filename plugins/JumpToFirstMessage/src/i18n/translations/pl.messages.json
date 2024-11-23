@@ -1,0 +1,10 @@
+{
+  "JUMPTOFIRSTMESSAGE_SETTINGS_ALIGNMENT_CENTER": "Środek",
+  "JUMPTOFIRSTMESSAGE_SETTINGS_ALIGNMENT_LEFT": "Lewo",
+  "JUMPTOFIRSTMESSAGE_SETTINGS_ALIGNMENT_NOTE": "Wyrównanie horyzontalne przycisku w kanałach.",
+  "JUMPTOFIRSTMESSAGE_SETTINGS_ALIGNMENT_RIGHT": "Prawo",
+  "JUMPTOFIRSTMESSAGE_SETTINGS_ALIGNMENT_TITLE": "Wyrównanie przycisku",
+  "JUMPTOFIRSTMESSAGE_SETTINGS_JUMP_TO_UNREAD_NOTE": "Przejdzie do ostatniej nieprzeczytanej wiadomości, jeśli jest dostępna, przed przejściem do pierwszej wiadomości na kanale.",
+  "JUMPTOFIRSTMESSAGE_SETTINGS_THREADS_ONLY_NOTE": "Jeśli wyświetlić przycisk tylko w wątkach. Zaleca się pozostawienie tej opcji włączonej.",
+  "JUMPTOFIRSTMESSAGE_SETTINGS_THREADS_ONLY_TITLE": "Pokaż tylko w wątkach"
+}

@@ -17,6 +17,17 @@ interface RetryOptions {
   timeout: number;
 }
 
+interface RetryOptionsTimeout {
+  response: number;
+  deadline: number;
+}
+
+interface AttachmentUrlRetryOptions {
+  backoff: Backoff;
+  retries: number;
+  timeout: number | RetryOptionsTimeout;
+}
+
 interface ChunkUpload {
   bufferedFileData?: Blob;
   contentType: string;
@@ -76,6 +87,7 @@ export declare class CloudUpload extends Upload {
   public uploadedFilename?: string | undefined;
 
   public cancel: () => void;
+  public createAttachmentUrlRetryOpts: () => AttachmentUrlRetryOptions;
   public delete: () => Promise<void>;
   public getChunk: (
     start: number,

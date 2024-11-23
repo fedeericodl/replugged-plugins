@@ -12,6 +12,7 @@ export enum DraftType {
   ApplicationLauncherCommand,
   Poll,
   SlashCommand,
+  ForwardContextMessage,
 }
 
 export declare class UploadAttachmentStore extends Flux.Store {

@@ -48,7 +48,7 @@ export declare class PermissionStore extends Flux.Store {
     excludeGuildPermissions?: boolean,
   ) => boolean;
   public canImpersonateRole: (guild: Guild, role: Role) => boolean;
-  public canManageUser: (permission: bigint, user: User | string, guild: Guild) => boolean;
+  public canManageUser: (permission: bigint, otherUser: User | string, guild: Guild) => boolean;
   public canWithPartialContext: (
     permission: bigint,
     context: PartialChannelContext | PartialGuildContext,

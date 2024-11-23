@@ -132,7 +132,7 @@ declare class ReadState {
   public static getValue: (
     channelId: string,
     readStateType?: ReadStateTypes,
-    callback?: (readState: ReadState) => ReadStateValue,
+    transform?: (readState: ReadState) => ReadStateValue,
     defaultValue?: ReadStateValue,
   ) => ReadStateValue;
   public static resetGuildSentinels: () => void;
@@ -192,7 +192,7 @@ declare class ReadState {
   public canTrackUnreads: () => boolean;
   public clearOutgoingAck: () => void;
   public delete: (remote?: boolean) => void;
-  public deserializeForOverlay: (readState: ReadState) => void;
+  public deserializeForOverlay: (_ref: ReadState) => void;
   public getAckTimestamp: () => number;
   public getGuildChannelUnreadState: (
     channel: Channel,

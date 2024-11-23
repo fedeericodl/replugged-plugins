@@ -4,7 +4,7 @@ const pluginExports = `window.replugged.plugins.getExports("dev.fedeilleone.Read
 
 export default [
   {
-    find: ".GUILDS_BAR_A11Y_LABEL",
+    find: "guildsnav",
     replacements: [
       {
         match: /onScroll:\w+\.handleScroll,children:\[.+?\),/,

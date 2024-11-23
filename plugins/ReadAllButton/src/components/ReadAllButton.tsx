@@ -4,13 +4,20 @@ import DoubleCheckmarkIcon from "@common/components/icons/DoubleCheckmarkIcon";
 import classNames from "classnames";
 import { common, components } from "replugged";
 import { showClearedToast } from "..";
+import t from "../i18n/en-US.messages";
 import { cfg } from "../settings";
 import { markDMsAsRead, markGuildAsRead } from "../utils/MarkAsReadUtils";
 import ReadAllButtonContextMenu from "./ReadAllButtonContextMenu";
 
 import "./ReadAllButton.css";
 
-const { contextMenu, i18n, React, modal, toast } = common;
+const {
+  contextMenu,
+  i18n: { intl, t: discordT },
+  React,
+  modal,
+  toast,
+} = common;
 const { Clickable, ErrorBoundary, Text } = components;
 
 function ReadAllButton(): React.ReactElement {
@@ -23,8 +30,8 @@ function ReadAllButton(): React.ReactElement {
     if (cfg.get("askConfirm")) {
       if (
         !(await modal.confirm({
-          title: i18n.Messages.MARK_ALL_AS_READ,
-          body: i18n.Messages.READALLBUTTON_MARK_ALL_READ_DESCRIPTION,
+          title: intl.string(discordT.MARK_ALL_AS_READ),
+          body: intl.string(t.READALLBUTTON_MARK_ALL_READ_DESCRIPTION),
         }))
       )
         return;
@@ -35,16 +42,16 @@ function ReadAllButton(): React.ReactElement {
       if (cfg.get("markDMs")) markDMsAsRead();
       showClearedToast();
     } catch (err) {
-      toast.toast(i18n.Messages.READALLBUTTON_ERROR_GENERIC_TOAST, toast.Kind.FAILURE);
+      toast.toast(intl.string(t.READALLBUTTON_ERROR_GENERIC_TOAST), toast.Kind.FAILURE);
       console.error(err);
     }
   }, []);
 
   return (
     <ListItem>
-      <ListItemTooltip text={i18n.Messages.READALLBUTTON_READ_ALL} shouldShow={!useText}>
+      <ListItemTooltip text={intl.string(t.READALLBUTTON_READ_ALL)} shouldShow={!useText}>
         <Clickable
-          aria-label={i18n.Messages.READALLBUTTON_READ_ALL}
+          aria-label={intl.string(t.READALLBUTTON_READ_ALL)}
           className={classNames("readAllButton", { selected }, { round: useRoundButton })}
           onClick={handleClick}
           onMouseEnter={() => setSelected(true)}
@@ -52,7 +59,7 @@ function ReadAllButton(): React.ReactElement {
           onContextMenu={(event) => contextMenu.open(event, ReadAllButtonContextMenu)}>
           {useText ? (
             <Text.Eyebrow className="readAllButton-buttonText">
-              {i18n.Messages.READALLBUTTON_READ_ALL}
+              {intl.string(t.READALLBUTTON_READ_ALL)}
             </Text.Eyebrow>
           ) : (
             <DoubleCheckmarkIcon color="currentColor" />

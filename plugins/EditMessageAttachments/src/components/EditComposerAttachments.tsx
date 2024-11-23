@@ -7,11 +7,18 @@ import UploadAttachmentStore, { DraftType } from "@common/stores/UploadAttachmen
 import type { Channel, Message } from "discord-types/general";
 import { common, components } from "replugged";
 import { MAX_UPLOAD_COUNT } from "../constants";
+import t from "../i18n/en-US.messages";
 import ComposerAttachmentPopout from "./ComposerAttachmentPopout";
 
 import "./EditComposerAttachments.css";
 
-const { constants, flux: Flux, fluxDispatcher: Dispatcher, i18n, React } = common;
+const {
+  constants,
+  flux: Flux,
+  fluxDispatcher: Dispatcher,
+  i18n: { intl },
+  React,
+} = common;
 const { ErrorBoundary } = components;
 
 interface EditComposerAttachmentsProps {
@@ -72,7 +79,7 @@ function EditComposerAttachments(props: EditComposerAttachmentsProps): React.Rea
           {...props}
           onClick={() => setShouldShow(!shouldShow)}
           className="editMessageAttachments-attachmentsCount">
-          {i18n.Messages.EDITMESSAGEATTACHMENTS_COUNT_ATTACHMENTS.format({
+          {intl.formatToPlainString(t.EDITMESSAGEATTACHMENTS_COUNT_ATTACHMENTS, {
             count: (uploadsCount + attachmentsCount).toString(),
           })}
         </a>

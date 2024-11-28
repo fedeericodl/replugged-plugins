@@ -10,8 +10,8 @@ import {
   processTranslationsFile,
 } from "@discord/intl-loader-core";
 import type { Plugin } from "esbuild";
-import { readFileSync } from "node:fs";
-import { dirname, posix, relative, resolve } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, join, posix, relative, sep } from "node:path";
 
 const FILE_PATH_SEPARATOR_MATCH = /[\\\\\\/]/g;
 const INTL_MESSAGES_REGEXP = /\.messages\.(js|json|jsona)$/;
@@ -20,8 +20,17 @@ export function makePosixRelativePath(source: string, file: string): string {
   return `./${relative(dirname(source), file).replace(FILE_PATH_SEPARATOR_MATCH, posix.sep)}`;
 }
 
+function getPluginName(filePath: string): string | null {
+  const parts = filePath.split(sep);
+  const pluginsIndex = parts.indexOf("plugins");
+  if (pluginsIndex !== -1 && pluginsIndex + 1 < parts.length) {
+    return parts[pluginsIndex + 1];
+  }
+  return null;
+}
+
 let hasInitializedAllDefinitions = false;
-let messageKeys: Record<string, string> = {};
+let messageKeys: Map<string, Record<string, string>> = new Map();
 
 /**
  * Rewritten for esbuild. 1:1 copy of the original plugin, adapted for Replugged (doesn't hash keys).
@@ -36,7 +45,18 @@ export default {
       const sourcePath = args.path;
       const source = readFileSync(sourcePath, "utf-8");
       const forceTranslation = args.suffix === "?forceTranslation";
-      const i18nPath = resolve("./i18n/");
+
+      let i18nPath = dirname(sourcePath);
+      while (i18nPath && !existsSync(join(i18nPath, "translations"))) {
+        const parentDir = dirname(i18nPath);
+        if (parentDir === i18nPath) break;
+        i18nPath = parentDir;
+      }
+
+      const pluginName = getPluginName(sourcePath);
+      if (!pluginName) {
+        throw new Error("Could not determine plugin name from file path");
+      }
 
       if (!hasInitializedAllDefinitions) {
         processAllMessagesFiles(findAllMessagesFiles([i18nPath]));
@@ -54,8 +74,8 @@ export default {
           );
         }
 
-        if (Object.keys(messageKeys).length < Object.keys(result.messageKeys ?? {}).length) {
-          messageKeys = result.messageKeys;
+        if (pluginName && !messageKeys.has(pluginName)) {
+          messageKeys.set(pluginName, result.messageKeys);
         }
 
         const transformedOutput = new MessageDefinitionsTransformer({
@@ -96,7 +116,7 @@ export default {
         const patchedResult = compiledResult
           ? Object.fromEntries(
               Object.entries(JSON.parse(compiledResult?.toString() ?? "{}")).map(
-                ([hash, string]) => [messageKeys[hash], string],
+                ([hash, string]) => [messageKeys.get(pluginName)?.[hash] ?? "undefined", string],
               ),
             )
           : {};

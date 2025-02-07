@@ -1,5 +1,7 @@
 import type React from "react";
-import { webpack } from "replugged";
+import { common, webpack } from "replugged";
+
+const { components } = common;
 
 export enum PopoutAlign {
   BOTTOM = "bottom",
@@ -94,6 +96,7 @@ export type PopoutType = typeof Popout & {
   Animation: Record<"NONE" | "TRANSLATE" | "SCALE" | "FADE", string>;
 };
 
-const components = await webpack.waitForProps<Record<"Popout", PopoutType>>("Popout");
-
-export default components.Popout;
+export default webpack.getFunctionBySource<PopoutType>(
+  components,
+  /useRawTargetDimensions:\w+,renderPopout:this\.renderPopout/,
+)!;

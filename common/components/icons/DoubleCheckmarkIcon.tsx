@@ -1,12 +1,6 @@
-import type { DefaultIconProps } from "@common/types/components";
-import type React from "react";
-import { webpack } from "replugged";
+import type { IconType } from "@common/types/components";
+import { common, webpack } from "replugged";
 
-export type DoubleCheckmarkIconType = React.FC<DefaultIconProps>;
+const { components } = common;
 
-const components =
-  await webpack.waitForProps<Record<"DoubleCheckmarkIcon", DoubleCheckmarkIconType>>(
-    "DoubleCheckmarkIcon",
-  );
-
-export default components.DoubleCheckmarkIcon;
+export default webpack.getFunctionBySource<IconType>(components, "M16.7 8.7a1 1 0 0 0-1.4-1.4")!;

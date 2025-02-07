@@ -1,10 +1,6 @@
-import type { DefaultIconProps } from "@common/types/components";
-import type React from "react";
-import { webpack } from "replugged";
+import type { IconType } from "@common/types/components";
+import { common, webpack } from "replugged";
 
-export type ImagePlusIconType = React.FC<DefaultIconProps>;
+const { components } = common;
 
-const components =
-  await webpack.waitForProps<Record<"ImagePlusIcon", ImagePlusIconType>>("ImagePlusIcon");
-
-export default components.ImagePlusIcon;
+export default webpack.getFunctionBySource<IconType>(components, "M2 5a3 3 0 0 1 3-3h14a3")!;

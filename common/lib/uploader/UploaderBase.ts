@@ -88,8 +88,6 @@ export declare class UploaderBase extends EventEmitter {
   ) => void;
 }
 
-const uploaderBaseStr = "this.clearProcessingMessageInterval";
-
-export default await webpack
-  .waitForModule(webpack.filters.bySource(uploaderBaseStr))
-  .then((mod) => webpack.getFunctionBySource<typeof UploaderBase>(mod, uploaderBaseStr)!);
+export default await webpack.waitForModule<typeof UploaderBase>(
+  webpack.filters.bySource("this.clearProcessingMessageInterval"),
+);

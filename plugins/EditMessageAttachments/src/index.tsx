@@ -59,7 +59,7 @@ export function _patchEditMessageAction(
 
 async function patchChannelTextAreaContainer(): Promise<void> {
   const ChannelTextAreaContainer = await webpack.waitForModule<ChannelTextAreaContainerType>(
-    webpack.filters.bySource(/renderApplicationCommandIcon:\w+,pendingReply:\w+/),
+    webpack.filters.bySource(/renderLeftAccessories:\w+,pendingReply:\w+/),
   );
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!ChannelTextAreaContainer) {

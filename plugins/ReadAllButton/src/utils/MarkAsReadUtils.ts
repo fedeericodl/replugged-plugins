@@ -6,7 +6,7 @@ import ReadStateStore, { ReadStateTypes } from "@common/stores/ReadStateStore";
 import { common } from "replugged";
 import { cfg } from "../settings";
 
-const { fluxDispatcher: Dispatcher, guilds } = common;
+const { channels, fluxDispatcher: Dispatcher, guilds } = common;
 
 // Utilities
 
@@ -99,7 +99,7 @@ export function markGuildAsRead(): void {
  * Marks all direct messages as read.
  */
 export function markDMsAsRead(): void {
-  const dmsList = common.channels
+  const dmsList = channels
     .getSortedPrivateChannels()
     .map((dm) => dm.id)
     .filter((id) => ReadStateStore.hasUnread(id));

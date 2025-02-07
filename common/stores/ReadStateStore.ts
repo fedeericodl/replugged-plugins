@@ -243,7 +243,7 @@ export declare class ReadStateStore extends Flux.Store {
   public getGuildUnreadsSentinel: (guildId: string) => number;
   public getMentionChannelIds: () => string[];
   public getMentionCount: (channelId: string, readStateType?: ReadStateTypes) => number;
-  public getNonChannelAckId: (channelId: string) => string | null;
+  public getNonChannelAckId: (readStateType: ReadStateTypes) => string | null;
   public getNotifCenterReadState: (channelId: string) => ReadState | undefined;
   public getOldestUnreadMessageId: (
     channelId: string,

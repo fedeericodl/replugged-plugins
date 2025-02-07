@@ -46,7 +46,7 @@ export default [
   },
   {
     // Enable pasting files while editing
-    find: /renderApplicationCommandIcon:\w+,pendingReply:\w+/,
+    find: /renderApplicationCommandIcon:\w+,renderAppLauncherButton:\w+/,
     replacements: [
       {
         match: /canPasteFiles:(\w+)/,
@@ -56,6 +56,7 @@ export default [
     ],
   },
   {
+    // Pass the channelId to the UploadArea component
     find: "showLargeMessageDialog:!1",
     replacements: [
       {
@@ -65,11 +66,12 @@ export default [
     ],
   },
   {
-    find: "this.state.isOverZone",
+    // Disable dropping the files outside the ComposerUploadButton component
+    find: /this\.state\.isOverZone/g,
     replacements: [
       {
-        match: /!this.preventUnwantedDrop/g,
-        replace: (suffix) => `${pluginExports}._checkIsInEditor(this.props.channelId) || ${suffix}`,
+        match: /!this\.preventUnwantedDrop/g,
+        replace: (suffix) => `${pluginExports}._checkIsInEditor(this.props.channelId)||${suffix}`,
       },
     ],
   },

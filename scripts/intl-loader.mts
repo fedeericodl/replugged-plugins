@@ -1,4 +1,6 @@
 import {
+  // @ts-expect-error: ts doesn't like that this is a const enum
+  IntlCompiledMessageFormat,
   MessageDefinitionsTransformer,
   findAllMessagesFiles,
   getLocaleFromTranslationsFileName,
@@ -9,7 +11,7 @@ import {
   processDefinitionsFile,
   processTranslationsFile,
 } from "@discord/intl-loader-core";
-import type { Plugin } from "esbuild";
+import type esbuild from "esbuild";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join, posix, relative, sep } from "node:path";
 
@@ -30,7 +32,7 @@ function getPluginName(filePath: string): string | null {
 }
 
 let hasInitializedAllDefinitions = false;
-let messageKeys: Map<string, Record<string, string>> = new Map();
+const messageKeys = new Map<string, Record<string, string>>();
 
 /**
  * Rewritten for esbuild. 1:1 copy of the original plugin, adapted for Replugged (doesn't hash keys).
@@ -65,6 +67,7 @@ export default {
 
       if (isMessageDefinitionsFile(sourcePath) && !forceTranslation) {
         const result = processDefinitionsFile(sourcePath, source, { locale: "en-US" });
+        if (!result.succeeded) throw new Error(result.errors[0].message);
 
         result.translationsLocaleMap[result.locale] = `${sourcePath}?forceTranslation`;
         for (const locale in result.translationsLocaleMap) {
@@ -86,13 +89,13 @@ export default {
           defaultLocale: result.locale,
           getTranslationImport: (importPath) => `import("${importPath}")`,
           debug: false,
-          preGenerateBinds: false,
+          bindMode: "proxy",
           getPrelude: () => `import {webpack} from 'replugged';`,
         }).getOutput();
 
         return {
-          contents: transformedOutput.replace(
-            /require\('@discord\/intl'\);/,
+          contents: transformedOutput.replaceAll(
+            /require\('@discord\/intl'\);/g,
             "await webpack.waitForProps('createLoader','IntlManager');",
           ),
           loader: "js",
@@ -100,24 +103,30 @@ export default {
       } else {
         const locale = forceTranslation ? "en-US" : getLocaleFromTranslationsFileName(sourcePath);
         if (isMessageTranslationsFile(sourcePath)) {
-          processTranslationsFile(sourcePath, source, { locale });
+          const result = processTranslationsFile(sourcePath, source, { locale });
+          if (!result.succeeded) throw new Error(result.errors[0].message);
         } else if (forceTranslation) {
+          /* empty */
         } else {
           throw new Error(
             "Expected a translation file or the `forceTranslation` query parameter on this import, but none was found",
           );
         }
 
-        // eslint-disable-next-line no-undefined
         const compiledResult = precompileFileForLocale(sourcePath, locale, undefined, {
-          format: 1,
+          // @ts-expect-error: ts doesn't like that this is a const enum
+          format: IntlCompiledMessageFormat.KeylessJson,
           bundleSecrets: false,
         });
+        const parsedMessage: Record<string, unknown> = JSON.parse(
+          compiledResult?.toString() ?? "{}",
+        );
         const patchedResult = compiledResult
           ? Object.fromEntries(
-              Object.entries(JSON.parse(compiledResult?.toString() ?? "{}")).map(
-                ([hash, string]) => [messageKeys.get(pluginName)?.[hash] ?? "undefined", string],
-              ),
+              Object.entries(parsedMessage).map(([hash, string]) => [
+                messageKeys.get(pluginName)?.[hash] ?? "undefined",
+                string,
+              ]),
             )
           : {};
 
@@ -128,4 +137,4 @@ export default {
       }
     });
   },
-} as Plugin;
+} as esbuild.Plugin;

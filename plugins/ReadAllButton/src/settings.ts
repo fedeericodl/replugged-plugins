@@ -1,6 +1,7 @@
 import { settings } from "replugged";
 
-interface Settings {
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+type Settings = {
   askConfirm?: boolean;
   blacklist?: string[];
   markChannels?: boolean;
@@ -11,7 +12,7 @@ interface Settings {
   roundButton?: boolean;
   text?: boolean;
   toasts?: boolean;
-}
+};
 
 const defaultSettings = {
   askConfirm: false,
@@ -26,7 +27,7 @@ const defaultSettings = {
   toasts: true,
 } satisfies Partial<Settings>;
 
-export const cfg = await settings.init<Settings, keyof typeof defaultSettings>(
+export const cfg = settings.init<Settings, keyof typeof defaultSettings>(
   "dev.fedeilleone.ReadAllButton",
   defaultSettings,
 );

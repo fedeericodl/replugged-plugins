@@ -40,6 +40,7 @@ export default (props: ComposerAttachmentPopoutProps): React.ReactElement | null
         <div className="editMessageAttachments-uploads">
           {uploads.map((upload) => (
             <ChannelAttachmentUpload
+              key={upload.id}
               channelId={channelId}
               draftType={DraftType.EditedChannelMessage}
               upload={upload}

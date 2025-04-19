@@ -52,7 +52,7 @@ function _uploadFiles(
       file,
     });
   });
-  cloudUploader.on("error", (file, __, response) => {
+  cloudUploader.on("error", (file, __, response: Record<string, unknown>) => {
     Dispatcher.dispatch({
       type: "UPLOAD_FAIL",
       channelId,
@@ -62,7 +62,7 @@ function _uploadFiles(
 
     runOriginalFunction(response);
   });
-  cloudUploader.on("complete", (file, response) => {
+  cloudUploader.on("complete", (file, response: Record<string, unknown>) => {
     Dispatcher.dispatch({
       type: "UPLOAD_COMPLETE",
       channelId,

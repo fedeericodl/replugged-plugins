@@ -19,7 +19,6 @@ type FileType =
   | "code"
   | "document"
   | "spreadsheet"
-  | "webcode"
   | "audio"
   | "unknown";
 

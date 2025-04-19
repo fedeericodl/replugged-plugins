@@ -24,7 +24,7 @@ export declare class CommonFileInput extends React.Component<CommonFileInputProp
   public handleNativeKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
 }
 
-interface FileInputProps extends CommonFileInputProps {}
+type FileInputProps = CommonFileInputProps;
 
 export declare class FileInput extends React.Component<FileInputProps> {
   private _ref: React.RefObject<CommonFileInput> | null;

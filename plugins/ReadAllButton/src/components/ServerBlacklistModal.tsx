@@ -36,8 +36,7 @@ function search(guilds: Guild[], query: string): Guild[] {
 
   const matching = [];
 
-  for (let i = 0; i < guilds.length; i++) {
-    const guild = guilds[i];
+  for (const guild of guilds) {
     const name = guild.name.toLowerCase();
 
     if (name === query || guild.id === query) {

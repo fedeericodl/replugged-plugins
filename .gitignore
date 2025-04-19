@@ -107,4 +107,5 @@ dist
 
 assets/*.json
 **/i18n/*.map
-*.mjs
+scripts/*.mjs
+esbuild.extra.mjs

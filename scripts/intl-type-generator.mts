@@ -4,7 +4,7 @@ import {
   isMessageDefinitionsFile,
 } from "@discord/intl-loader-core";
 import chalk from "chalk";
-import type { Plugin } from "esbuild";
+import type esbuild from "esbuild";
 
 let isFirstRun = true;
 
@@ -19,7 +19,6 @@ export default {
   setup(build) {
     const generateTypeDefinitionsFile = (filePath: string): number => {
       const start = performance.now();
-      // eslint-disable-next-line no-undefined
       generateTypeDefinitions(filePath, undefined);
       const end = performance.now();
 
@@ -48,4 +47,4 @@ export default {
       }
     });
   },
-} as Plugin;
+} as esbuild.Plugin;

@@ -3,9 +3,9 @@
   "name": "EditMessageAttachments",
   "description": "Add or delete attachments when editing a message.",
   "author": {
-    "name": "FedeIlLeone",
+    "name": "fedeerico",
     "discordID": "403195964241739776",
-    "github": "FedeIlLeone"
+    "github": "fedeericodl"
   },
   "version": "1.0.11",
   "updater": {
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "image": "https://i.imgur.com/rTMgInV.gif",
-  "source": "https://github.com/FedeIlLeone/replugged-plugins/blob/main/plugins/EditMessageAttachments",
+  "source": "https://github.com/fedeericodl/replugged-plugins/blob/main/plugins/EditMessageAttachments",
   "type": "replugged-plugin",
   "renderer": "src/index.tsx",
   "plaintextPatches": "src/plaintextPatches.ts"

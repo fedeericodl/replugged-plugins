@@ -2,7 +2,7 @@ import type { BuildOptions } from "esbuild";
 import intlLoader from "./scripts/intl-loader.mjs";
 import intlTypeGenerator from "./scripts/intl-type-generator.mjs";
 
-export default ({ plugins, ...config }: BuildOptions) => {
+export default ({ plugins, ...config }: BuildOptions): BuildOptions => {
   return {
     ...config,
     plugins: [...(plugins ?? []), intlTypeGenerator, intlLoader],

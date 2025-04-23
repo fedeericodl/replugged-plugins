@@ -7,7 +7,7 @@ export default [
     find: "guildsnav",
     replacements: [
       {
-        match: /onScroll:\w+\.handleScroll,children:\[.+?\),/,
+        match: /isCurrentUserGuest.{25,100}?\(\w+\.Fragment,{children:\[.+?\),/,
         replace: `$&${pluginExports}?._renderReadAllButton(),`,
       },
     ],

@@ -13,7 +13,6 @@
   "READALLBUTTON_SETTINGS_DISPLAY_TEXT_NOTE": "Wyłącz także tooltip.",
   "READALLBUTTON_SETTINGS_DISPLAY_TEXT_TITLE": "Pokaż tekst zamiast ikony",
   "READALLBUTTON_SETTINGS_EDIT_BLACKLIST": "Edytuj czarną listę",
-  "READALLBUTTON_SETTINGS_ROUND_BUTTON_TITLE": "Użyj okrągłego przycisku",
   "READALLBUTTON_SETTINGS_SERVER_BLACKLIST_NOTE": "{count} serwerów nie zostanie oznaczonych jako przeczytane.",
   "READALLBUTTON_SETTINGS_SERVER_BLACKLIST_TITLE": "Czarna lista serwerów",
   "READALLBUTTON_SETTINGS_SHOW_TOAST_TITLE": "Pokaż toast potwierdzający"

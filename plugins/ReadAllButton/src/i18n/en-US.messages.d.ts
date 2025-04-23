@@ -162,17 +162,6 @@ declare const messages: {
    */
   'READALLBUTTON_SETTINGS_EDIT_BLACKLIST': TypedIntlMessageGetter<{}>,
   /**
-   * Key: `sjzDl5`
-   * 
-   * ### Definition
-   * ```text
-   * Use a round button
-   * ```
-   * 
-   * **Translated in all locales**
-   */
-  'READALLBUTTON_SETTINGS_ROUND_BUTTON_TITLE': TypedIntlMessageGetter<{}>,
-  /**
    * Key: `CzdMQE`
    * 
    * ### Definition

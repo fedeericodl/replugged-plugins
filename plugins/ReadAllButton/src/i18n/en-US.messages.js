@@ -22,7 +22,6 @@ export default defineMessages({
   READALLBUTTON_SETTINGS_DISPLAY_TEXT_NOTE: "Disables the tooltip as well.",
   READALLBUTTON_SETTINGS_DISPLAY_TEXT_TITLE: "Display text instead of an icon",
   READALLBUTTON_SETTINGS_EDIT_BLACKLIST: "Edit Blacklist",
-  READALLBUTTON_SETTINGS_ROUND_BUTTON_TITLE: "Use a round button",
   READALLBUTTON_SETTINGS_SERVER_BLACKLIST_NOTE: "{count} servers won't get marked as read.",
   READALLBUTTON_SETTINGS_SERVER_BLACKLIST_TITLE: "Server Blacklist",
   READALLBUTTON_SETTINGS_SHOW_TOAST_TITLE: "Show a confirmation toast",

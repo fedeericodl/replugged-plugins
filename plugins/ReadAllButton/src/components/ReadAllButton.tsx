@@ -1,7 +1,5 @@
-import ListItem from "@common/components/ListItem";
-import ListItemTooltip from "@common/components/ListItemTooltip";
+import ButtonListItem from "@common/components/ButtonListItem";
 import DoubleCheckmarkIcon from "@common/components/icons/DoubleCheckmarkIcon";
-import classNames from "classnames";
 import { common, components } from "replugged";
 import { showClearedToast } from "..";
 import t from "../i18n/en-US.messages";
@@ -18,13 +16,16 @@ const {
   modal,
   toast,
 } = common;
-const { Clickable, ErrorBoundary, Text } = components;
+const { ErrorBoundary, Text } = components;
+
+const IconText = (): React.ReactElement => (
+  <Text.Eyebrow className="readAllButton-buttonText">
+    {intl.string(t.READALLBUTTON_READ_ALL)}
+  </Text.Eyebrow>
+);
 
 function ReadAllButton(): React.ReactElement {
-  const [selected, setSelected] = React.useState(false);
-
   const useText = cfg.get("text");
-  const useRoundButton = cfg.get("roundButton");
 
   const handleClick = React.useCallback(async () => {
     if (cfg.get("askConfirm")) {
@@ -48,25 +49,16 @@ function ReadAllButton(): React.ReactElement {
   }, []);
 
   return (
-    <ListItem>
-      <ListItemTooltip text={intl.string(t.READALLBUTTON_READ_ALL)} shouldShow={!useText}>
-        <Clickable
-          aria-label={intl.string(t.READALLBUTTON_READ_ALL)}
-          className={classNames("readAllButton", { selected }, { round: useRoundButton })}
-          onClick={handleClick}
-          onMouseEnter={() => setSelected(true)}
-          onMouseLeave={() => setSelected(false)}
-          onContextMenu={(event) => contextMenu.open(event, ReadAllButtonContextMenu)}>
-          {useText ? (
-            <Text.Eyebrow className="readAllButton-buttonText">
-              {intl.string(t.READALLBUTTON_READ_ALL)}
-            </Text.Eyebrow>
-          ) : (
-            <DoubleCheckmarkIcon color="currentColor" />
-          )}
-        </Clickable>
-      </ListItemTooltip>
-    </ListItem>
+    <ButtonListItem
+      id="read-all-button"
+      className="readAllButton-button"
+      onClick={handleClick}
+      onContextMenu={(event) => contextMenu.open(event, ReadAllButtonContextMenu)}
+      tooltip={intl.string(t.READALLBUTTON_READ_ALL)}
+      // Kinda a hack, ButtonListItem is not meant to be used like this
+      icon={useText ? IconText : DoubleCheckmarkIcon}
+      showPill={false}
+    />
   );
 }
 

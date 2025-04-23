@@ -73,7 +73,6 @@ export default (): React.ReactElement => {
   const markDMs = util.useSetting(cfg, "markDMs");
   const markGuildEvents = util.useSetting(cfg, "markGuildEvents");
   const markOnboardingQuestions = util.useSetting(cfg, "markOnboardingQuestions");
-  const useRoundButton = util.useSetting(cfg, "roundButton");
   const useText = util.useSetting(cfg, "text");
   const showConfirm = util.useSetting(cfg, "askConfirm");
   const showToasts = util.useSetting(cfg, "toasts");
@@ -116,9 +115,6 @@ export default (): React.ReactElement => {
         </Flex>
       </FormItem>
       <FormItem title={intl.string(discordT.APPEARANCE)}>
-        <SwitchItem {...useRoundButton}>
-          {intl.string(t.READALLBUTTON_SETTINGS_ROUND_BUTTON_TITLE)}
-        </SwitchItem>
         <SwitchItem {...useText} note={intl.string(t.READALLBUTTON_SETTINGS_DISPLAY_TEXT_NOTE)}>
           {intl.string(t.READALLBUTTON_SETTINGS_DISPLAY_TEXT_TITLE)}
         </SwitchItem>

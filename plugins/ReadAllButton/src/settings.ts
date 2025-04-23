@@ -9,7 +9,6 @@ type Settings = {
   markGuildEvents?: boolean;
   markMuted?: boolean;
   markOnboardingQuestions?: boolean;
-  roundButton?: boolean;
   text?: boolean;
   toasts?: boolean;
 };
@@ -22,7 +21,6 @@ const defaultSettings = {
   markGuildEvents: true,
   markMuted: true,
   markOnboardingQuestions: true,
-  roundButton: false,
   text: false,
   toasts: true,
 } satisfies Partial<Settings>;
